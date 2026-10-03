@@ -3,7 +3,6 @@ CSE 325
 
 ============================================================
 COMPONENT 1: CREATE A WEB API WITH ASP.NET CORE CONTROLLERS
-============================================================
 
 The Web API was completed using ASP.NET Core controllers.
 
@@ -12,55 +11,61 @@ record as required by the assignment.
 
 Final API output:
 
-[PASTE YOUR FINAL PIZZA API JSON OUTPUT HERE]
+id name isGlutenFree
 
+1 Classic Italian False
+2 Veggie True
+3 Pepperoni False
+4 BBQ Chicken False
+5 Hawaiian False
+6 Margherita False
 
 ============================================================
 COMPONENT 2: SALES SUMMARY FUNCTION
-============================================================
 
 The following function was added to the Work with files and
 directories in a .NET app module to generate a sales summary
 report.
 
 void GenerateSalesSummary(
-    IEnumerable<string> salesFiles,
-    string outputPath)
+IEnumerable<string> salesFiles,
+string outputPath)
 {
-    var us = CultureInfo.GetCultureInfo("en-US");
-    var report = new StringBuilder();
+var us = CultureInfo.GetCultureInfo("en-US");
+var report = new StringBuilder();
 
-    double total = CalculateSalesTotal(salesFiles);
+double total = CalculateSalesTotal(salesFiles);
 
-    report.AppendLine("Sales Summary");
-    report.AppendLine("----------------------------");
-    report.AppendLine($" Total Sales: {total.ToString("C", us)}");
-    report.AppendLine();
-    report.AppendLine(" Details:");
+report.AppendLine("Sales Summary");
+report.AppendLine("----------------------------");
+report.AppendLine($" Total Sales: {total.ToString("C", us)}");
+report.AppendLine();
+report.AppendLine(" Details:");
 
-    foreach (var file in salesFiles)
-    {
-        string json = File.ReadAllText(file);
+foreach (var file in salesFiles)
+{
+    string json = File.ReadAllText(file);
 
-        SalesData? data =
-            JsonConvert.DeserializeObject<SalesData?>(json);
+    SalesData? data =
+        JsonConvert.DeserializeObject<SalesData?>(json);
 
-        double fileTotal = data?.Total ?? 0;
+    double fileTotal = data?.Total ?? 0;
 
-        report.AppendLine(
-            $"  {Path.GetFileName(file)}: {fileTotal.ToString("C", us)}");
-    }
-
-    File.WriteAllText(outputPath, report.ToString());
+    report.AppendLine(
+        $"  {Path.GetFileName(file)}: {fileTotal.ToString("C", us)}");
 }
 
+File.WriteAllText(outputPath, report.ToString());
+
+
+}
 
 Generated Sales Summary:
 
 Sales Summary
-----------------------------
- Total Sales: $3,596.25
 
- Details:
-  store1.json: $1,250.50
-  store2.json: $2,345.75
+Total Sales: $3,596.25
+
+Details:
+store1.json: $1,250.50
+store2.json: $2,345.75
