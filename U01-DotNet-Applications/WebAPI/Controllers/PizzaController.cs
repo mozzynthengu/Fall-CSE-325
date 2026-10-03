@@ -12,7 +12,8 @@ public class PizzaController : ControllerBase
         new Pizza { Id = 2, Name = "Veggie", IsGlutenFree = true },
         new Pizza { Id = 3, Name = "Pepperoni", IsGlutenFree = false },
         new Pizza { Id = 4, Name = "BBQ Chicken", IsGlutenFree = false },
-        new Pizza { Id = 5, Name = "Hawaiian", IsGlutenFree = false }
+        new Pizza { Id = 5, Name = "Hawaiian", IsGlutenFree = false },
+        new Pizza { Id = 6, Name = "Margherita", IsGlutenFree = false }
     };
 
     [HttpGet]
